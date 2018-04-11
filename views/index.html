@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Voting App</title>
+    <meta name="Voting App" content="Voting App made by Feddle">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="content" class="container-fluid p-0">  
+      
+    <!--NAVBAR-->
+    <div>            
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
+      <a href="#" class="navbar-brand">Voting App</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navItems">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="navItems" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="navbar-item">
+            <a href="/" class="nav-link">Home</a>        
+          </li>
+          <li class="navbar-item">
+            <a href="/new" class="nav-link">New Poll</a>        
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="nav-link">My Polls</a>        
+          </li>        
+        </ul>
+        <span><a href="#" class="btn btn-outline-info">Sign in with Twitter</a></span>
+      </div>
+    </nav>    
+    </div>
+    <!--CONTENT-->
+    <main class="container w-75 h-100 bg-light pb-3">      
+      {% block content %}
+      <h4 class="text-center">
+        Select a poll to vote on or sign in to create your own!
+      </h4>
+      <div class="list-group m-auto text-center">                
+        {% for poll in polls %}
+        <a href="/poll/{{ poll.link }}" class="list-group-item list-group-item-action">{{ poll.title }}</a>       
+        {% endfor %}
+      </div>
+      {% endblock %}
+    </main>
+    <!--FOOTER-->
+    <footer class="footer bg-dark">
+      <div class="container-fluid ml-0 mb-0">
+        <p class="text-white mb-auto">Made by Feddle</p>
+        <a href="https://github.com/Feddle" class="text-info">https://github.com/Feddle</a>
+      </div>        
+    </footer>
+  </div>
+  
+
+    <!--
+    <script src="/client.js"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

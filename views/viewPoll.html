@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h3>
+  {{ poll.title }}
+</h3>
+<form>
+  <div class="row">
+    <div class="col-3">
+      <label for="vote">I vote for...</label>
+      <select class="form-control" id="vote">
+      {% for option in poll.options %}
+        <option>{{ option }}</option>
+      {% endfor %}
+      <option>My custom option</option>
+      </select>    
+    </div>
+    <div class="col-9">
+      <p>
+        chart here
+      </p>  
+    </div>    
+  </div>
+  
+  <button type="submit" class="btn btn-info mt-2">Submit</button>
+</form>
+{% endblock %}

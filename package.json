@@ -1,0 +1,29 @@
+{
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "voting-app",
+  "version": "1.0.0",
+  "description": "FCC voting app",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5",
+    "nunjucks": "^3.1.2",
+    "body-parser": "^1.18.2"
+  },
+  "engines": {
+    "node": "9.x"
+  },
+  "repository": {
+    "url": "https://github.com/Feddle/voting-app"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}

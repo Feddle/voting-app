@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h3>
+  New Poll
+</h3>
+<form action="/new" method="post">
+  <div class="form-group">
+    <label for="pollTitle">Poll Title</label>
+    <input type="text" class="form-control" id="pollTitle" name="pollTitle" required>    
+  </div>
+  <div class="form-group">
+    <label for="pollOptions">Poll Options</label>
+    <textarea name="options" class="form-control" placeholder="option1&#10;option2&#10;option3" rows="5" required></textarea>
+    <small class="form-text text-muted">Enter each option on a separate line</small>
+  </div>
+  <button type="submit" class="btn btn-info">Create</button>
+</form>
+{% endblock %}
