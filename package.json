@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "express": "^4.16.3",
-    "mongodb": "^3.0.5",
+    "mongodb": "^3.0.7",
     "nunjucks": "^3.1.2",
-    "body-parser": "^1.18.2"
+    "body-parser": "^1.18.2",
+    "chart.js": "^2.7.2",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.15"
   },
   "engines": {
     "node": "9.x"

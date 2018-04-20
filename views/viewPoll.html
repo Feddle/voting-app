@@ -4,24 +4,61 @@
 <h3>
   {{ poll.title }}
 </h3>
-<form>
+<form method="post">
   <div class="row">
-    <div class="col-3">
+    <div class="col-4">
       <label for="vote">I vote for...</label>
-      <select class="form-control" id="vote">
-      {% for option in poll.options %}
-        <option>{{ option }}</option>
+      <select class="form-control" id="vote" name="vote">
+      {% for option, votes in poll.options %}
+        <option id="opt_{{ loop.index0 }}">{{ option }}</option>
       {% endfor %}
       <option>My custom option</option>
-      </select>    
+      </select> 
+      <input id="customOption" name="customOption" type="text" class="form-control mt-3" style="display: none" placeholder="Custom option">
     </div>
-    <div class="col-9">
-      <p>
-        chart here
-      </p>  
+    <div class="col-6 ml-auto">
+      <canvas id="pollChart" width="200" height="200"></canvas>
     </div>    
   </div>
   
   <button type="submit" class="btn btn-info mt-2">Submit</button>
 </form>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="/viewPoll.js"></script>
+<script>  
+  let votes = [{% for option, votes in poll.options %}{{ votes }}{% if loop.index < loop.length %} , {% endif %} {% endfor %}];
+  let options = [{% for option, votes in poll.options %}"{{ option }}"{% if loop.index < loop.length %} , {% endif %} {% endfor %}];
+  let data = {
+    datasets: [{
+        data: votes,
+        backgroundColor: [
+          "#1976D2",
+          "#BBDEFB",
+          "#2196F3",
+          "#FFFFFF",
+          "#7C4DFF",
+          "#212121",
+          "#757575",
+          "#BDBDBD",
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+          ]
+    }],
+    labels: options
+  };
+  let ctx = $("#pollChart");
+  var myPieChart = new Chart(ctx,{
+    type: "pie",
+    data: data
+  });
+</script>
+
 {% endblock %}
