@@ -32,10 +32,14 @@
             <a href="/new" class="nav-link">New Poll</a>        
           </li>
           <li class="navbar-item">
-            <a href="#" class="nav-link">My Polls</a>        
+            <a href="/mypolls" class="nav-link" {% if not user %} data-toggle="modal" data-target="#modalCenter" {% endif %} >My Polls</a>        
           </li>        
         </ul>
-        <span><a href="#" class="btn btn-outline-info">Sign in with Twitter</a></span>
+        {% if not user %}<span><a href="/auth/twitter" class="btn btn-outline-info">Sign in with Twitter</a></span>
+        {% elif user %}
+        <span class="text-info mr-2">{{ user.username }}</span>
+        <span><a href="/auth/logout" class="btn btn-outline-info mr-auto">Logout</a></span>
+        {% endif %}
       </div>
     </nav>    
     </div>
@@ -60,7 +64,22 @@
       </div>        
     </footer>
   </div>
-  
+    
+{% if not user %}
+<!--MODAL-->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">      
+      <div class="modal-body">
+        Please log in first
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

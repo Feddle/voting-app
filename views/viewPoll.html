@@ -6,15 +6,15 @@
 </h3>
 <form method="post">
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 mt-4">
       <label for="vote">I vote for...</label>
       <select class="form-control" id="vote" name="vote">
       {% for option, votes in poll.options %}
         <option id="opt_{{ loop.index0 }}">{{ option }}</option>
       {% endfor %}
-      <option>My custom option</option>
+      {% if user %}<option>My custom option</option>{% endif %}
       </select> 
-      <input id="customOption" name="customOption" type="text" class="form-control mt-3" style="display: none" placeholder="Custom option">
+      <input id="customOption" name="customOption" type="text" class="form-control mt-3" style="display: none" placeholder="Custom option">      
     </div>
     <div class="col-6 ml-auto">
       <canvas id="pollChart" width="200" height="200"></canvas>
@@ -22,6 +22,10 @@
   </div>
   
   <button type="submit" class="btn btn-info mt-2">Submit</button>
+  <a class="twitter-share-button btn btn-primary mt-2" href="https://twitter.com/intent/tweet?text={{ poll.title }}%20-%20https://voting-app-feddle.glitch.me/poll/{{ poll.link }}" target="_blank">Share on Twitter</a>
+  {% if isOwner %}
+  <a type="submit" class="btn btn-danger mt-2" href="/poll/{{ poll.link }}/delete">Delete</a>
+  {% endif %}
 </form>
 {% endblock %}
 
