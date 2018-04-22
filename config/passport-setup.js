@@ -17,8 +17,7 @@ passport.use(
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
         consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
         callbackURL: "/auth/twitter/redirect"
-    }, (token, tokenSecret, profile, done) => {     
-      console.log(profile);
+    }, (token, tokenSecret, profile, done) => {           
         User.findOne({twitterId: profile.id}).then((currentUser) => {
             if(currentUser){                
                 done(null, currentUser);

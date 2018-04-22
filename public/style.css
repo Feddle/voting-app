@@ -4,14 +4,20 @@
 /* You might want to try something fancier: */
 /* less: http://lesscss.org/ */
 
+
+
+
+
 html {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh !important;
 }
 
 body {
-  margin-bottom: 50px; /* Margin bottom by footer height */
+  /*margin-bottom: 50px;  Margin bottom by footer height */   
+  height: 100vh;
 }
+
 
 .footer {
   position: absolute;
