@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-4 mt-4">
       <label for="vote">I vote for...</label>
-      <select class="form-control" id="vote" name="vote">
+      <select class="form-control" id="vote" name="vote" autofocus="false" required>
       {% for option, votes in poll.options %}
         <option id="opt_{{ loop.index0 }}">{{ option }}</option>
       {% endfor %}
@@ -53,6 +53,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="/viewPoll.js"></script>
 <script>  
+  
+  $("#vote").prop("selectedIndex", -1);
   let votes = [{% for option, votes in poll.options %}{{ votes }}{% if loop.index < loop.length %} , {% endif %} {% endfor %}];
   let options = [{% for option, votes in poll.options %}"{{ option }}"{% if loop.index < loop.length %} , {% endif %} {% endfor %}];
   let data = {
@@ -86,8 +88,7 @@
       }
     }
   });
-  
-  console.log(document.cookie);
+    
 </script>
 
 {% endblock %}
